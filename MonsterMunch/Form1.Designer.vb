@@ -56,6 +56,7 @@ Partial Class Form1
         'game_ticker
         '
         Me.game_ticker.Enabled = True
+        Me.game_ticker.Interval = 33
         '
         'health
         '
