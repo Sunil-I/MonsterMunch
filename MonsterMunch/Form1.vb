@@ -12,15 +12,29 @@
 
 
     Private Sub MoveMonster()
+        ' Accelerates the monster on the X plane
         If pic_monster.Left < pic_player.Left Then
-            intMonVelX = intMonVelX + 1
-            If intMonVelX > intMonVelMax Then
-                intMonVelX = intMonVelMax
+            If intMonVelX < intMonVelMax Then
+                intMonVelX += 1
             End If
         Else
-            intMonVelX = intMonVelX - 1
+            If intMonVelX > -intMonVelMax Then
+                intMonVelX -= 1
+            End If
         End If
-        pic_monster.Left = pic_monster.Left + intMonVelX
+        ' Accelerates the monster on the Y plane
+        If pic_monster.Top < pic_player.Top Then
+            If intMonVelY < intMonVelMax Then
+                intMonVelY += 1
+            End If
+        Else
+            If intMonVelY > -intMonVelMax Then
+                intMonVelY -= 1
+            End If
+        End If
+        ' Moves the monster
+        pic_monster.Left += intMonVelX
+        pic_monster.Top += intMonVelY
     End Sub
 
     Private Sub MonsterHitPlayer()
@@ -31,7 +45,7 @@
                 game_ticker.Enabled = False
                 MsgBox("you are dead")
             Else
-                health.Value = health.Value - 1
+                health.Value = health.Value - 5
             End If
         Else
             this.backcolor = Color.White
